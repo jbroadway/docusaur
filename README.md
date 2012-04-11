@@ -28,3 +28,4 @@ To do:
 * Default styling
 * Disqus support
 * CLI handler to import PHP files from a folder
+* Duplicate old versions to new
