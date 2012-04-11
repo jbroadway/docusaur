@@ -4,7 +4,7 @@
 
 API documentation browser for software projects, made to work like the php.net
 website. Pages are created manually instead of being auto-generated, providing
-for more information than dockblocks can provide on their own.
+for more information than docblocks can provide on their own.
 
 Usage:
 
@@ -18,3 +18,14 @@ Usage:
 Supports [Disqus](http://disqus.com/) for comments, and searching via URLs,
 e.g., `/I18n::get` would forward to `/1.2/I18n/get` where `1.2` is the
 default version.
+
+To do:
+
+* Admin area to create/manage pages
+* Sitemaps integration
+* Search
+* Navigation
+* Page display
+* Default styling
+* Disqus support
+* CLI handler to import PHP files from a folder
