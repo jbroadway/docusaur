@@ -1,0 +1,60 @@
+<div class="form">
+
+<form method="post" id="{{ _form }}">
+
+<p>
+	{"Version"}:<br />
+	<select name="version">
+	{% foreach docusaur_versions () %}
+		<option value="{{ loop_value }}"{% if loop_value == $data->version %} selected{% end %}>{{ loop_value }}</option>
+	{% end %}
+	</select>
+</p>
+
+<p>
+	{"Class"}:<br />
+	<input type="text" name="class" size="30" value="{{ class }}" />
+</p>
+
+<p>
+	{"Name"}:<br />
+	<input type="text" name="name" size="30" value="{{ name }}" />
+</p>
+
+<p>
+	{"Type"}:<br />
+	<select name="type">
+		<option value="class"{% if type === 'class' %} selected{% end %}>{"Class"}</option>
+		<option value="property"{% if type === 'property' %} selected{% end %}>{"Property"}</option>
+		<option value="function"{% if type === 'function' %} selected{% end %}>{"Function"}</option>
+	</select>
+</p>
+
+<p>
+	{"Usage (ex: <tt>string I18n::get ($original = '')</tt>)"}:<br />
+	<input type="text" name="usage" size="90" value="{{ usage|quotes }}" />
+</p>
+
+<p>
+	{"Summary (Markdown)"}:<br />
+	<textarea name="summary" cols="80" rows="6">{{ summary }}</textarea>
+</p>
+
+<p>
+	{"Example Code"}:<br />
+	<textarea name="example" cols="80" rows="10">{{ example }}</textarea>
+</p>
+
+<p>
+	{"Additional Notes (Markdown)"}:<br />
+	<textarea name="notes" cols="80" rows="10">{{ notes }}</textarea>
+</p>
+
+<p>
+	<input type="submit" value="{"Add Page"}" />
+</p>
+
+</form>
+
+</div>
+<div class="clear"></div>

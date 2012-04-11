@@ -21,9 +21,8 @@ default version.
 
 To do:
 
-* Admin area to create/manage pages
+* Admin area - delete pages
 * Sitemaps integration
-* Search
 * Navigation
 * Page display
 * Default styling

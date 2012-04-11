@@ -1,0 +1,37 @@
+<form method="get">
+<p>
+	<a href="/docusaur/add?version={{ version }}">{" Add Page "}</a>
+	&nbsp;|&nbsp;
+	{"Version"}:
+	<select name="version" onchange="this.form.submit ()">
+	{% foreach versions %}
+		<option value="{{ loop_value }}"{% if loop_value === $data->version %} selected{% end %}>{{ loop_value }}</option>
+	{% end %}
+	</select>
+</p>
+</form>
+
+<p>
+<table width="100%">
+	<tr>
+		<th width="80%">{"Page"}</th>
+		<th width="20%">&nbsp;</th>
+	</tr>
+{% foreach pages %}
+	<tr>
+		<td>
+	{% if loop_value->type === 'class' %}
+			<tt>{{ loop_value->class }}</tt>
+	{% else %}
+			<tt>{{ loop_value->class }} - {{ loop_value->name }}</tt>
+	{% end %}
+		</td>
+		<td>
+			<a href="/docusaur/edit?id={{ loop_value->id }}">{"Edit"}</a>
+			&nbsp;|&nbsp;
+			<a href="/docusaur/delete?id={{ loop_value->id }}">{"Delete"}</a>
+		</td>
+	</tr>
+{% end %}
+</table>
+</p>

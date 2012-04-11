@@ -19,5 +19,7 @@ default_version = 1.2
 
 handler = docusaur/admin
 name = Docusaur
+install = docusaur/install
+version = 0.1.0-alpha
 
 ; */ ?>

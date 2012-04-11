@@ -3,6 +3,7 @@ create table docusaur (
 	version char(8) not null,
 	name char(32) not null, ; bar
 	class char(32) not null, ; Foo
+	type enum('function','property','class') not null,
 	usage char(128) not null, ; bool Foo::bar ($asdf = false)
 	summary text not null,
 	example text not null,

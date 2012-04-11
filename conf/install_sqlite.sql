@@ -3,6 +3,7 @@ create table docusaur (
 	version char(8) not null,
 	name char(32) not null,
 	class char(32) not null,
+	type char(16) not null,
 	usage char(128) not null,
 	summary text not null,
 	example text not null,
