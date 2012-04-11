@@ -10,27 +10,40 @@ if ($appconf['Docusaur']['layout'] !== 'default') {
 	$page->layout = $appconf['Docusaur']['layout'];
 }
 
+require_once ('apps/docusaur/lib/Functions.php');
+
+docusaur_versions ($appconf['Docusaur']['versions']);
+docusaur_version ($_GET['version']);
+
 $this->params = explode ('/', ltrim ($_SERVER['REQUEST_URI'], '/'));
 
-if (count ($this->params) === 3) {
-	// /version/class/method
+if (count ($this->params) === 3) { // /version/class/method
 	$doc = Docusaur::query ()
 		->where ('version', $this->params[0])
 		->where ('class', $this->params[1])
 		->where ('name', $this->params[2])
 		->single ();
 
+	if (strlen ($doc->usage) > 0) {
+		$page->title = $doc->usage;
+	} else {
+		$page->title = $doc->class . ' - ' . $doc->name;
+	}
 	echo $tpl->render ('docusaur/index', $doc);
-	info ($doc, true);
-} elseif (count ($this->params) === 2) {
-	// /version/class
+
+} elseif (count ($this->params) === 2) { // /version/class
 	$doc = Docusaur::query ()
 		->where ('version', $this->params[0])
 		->where ('class', $this->params[1])
 		->single ();
 
+	if (strlen ($doc->usage) > 0) {
+		$page->title = $doc->usage;
+	} else {
+		$page->title = $doc->class;
+	}
 	echo $tpl->render ('docusaur/index', $doc);
-	info ($doc, true);
+
 } elseif (count ($this->params) === 1) {
 	if (in_array ($this->params[0], $appconf['Docusaur']['versions'])) {
 		// /version
@@ -86,6 +99,7 @@ if (count ($this->params) === 3) {
 			->fetch_orig ();
 	}
 	info ($docs, true);
+
 } else {
 	// /docusaur or equivalent (embedded into page)
 	$page->title = i18n_getf ('%s Documentation', $appconf['Docusaur']['app_name']);

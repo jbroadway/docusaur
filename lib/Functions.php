@@ -16,4 +16,17 @@ function docusaur_version ($version = null) {
 	return $_version;
 }
 
+function docusaur_parse_links ($body) {
+	return preg_replace (
+		'/\[\[(.+?)\]\]/e',
+		'\'<a href="/\\1">\\1</a>\'',
+		$body
+	);
+}
+
+function docusaur_markdown ($body) {
+	require_once ('apps/docusaur/lib/markdown.php');
+	return docusaur_parse_links (Markdown ($body));
+}
+
 ?>
